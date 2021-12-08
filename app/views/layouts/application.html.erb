@@ -11,5 +11,13 @@
 
   <body>
     <%= yield %>
+    <%= link_to "home", root_path %>
+    <% if user_signed_in? %>
+        <p>Hi, <%= link_to current_user.email, users_show_path %></p>
+        <%= link_to "login", destroy_user_session_path, method: :delete %>
+    <% else %>
+        <%= link_to "sign in", new_user_session_path %>
+        <%= link_to "user registration", new_user_registration_path %>
+    <% end %>
   </body>
 </html>
